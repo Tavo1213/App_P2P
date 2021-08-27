@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Cliente {
+public class Cliente extends Thread{
 
     public boolean flag = true;
 
@@ -29,7 +29,7 @@ public class Cliente {
                     flag = false;
                     break;
                 } else{
-                    //serverThread.sendMessage(username+ ":" + msg);
+                    serverThread.sendMessage(username+ ":" + msg);
                     String mensaje = username + ":" + msg;
 
             }
@@ -38,4 +38,7 @@ public class Cliente {
 
     }catch (Exception e){}
 }
+    public void run(BufferedReader bufferedReader, String username, Hilo_server serverThread){
+        communicate(bufferedReader, username, serverThread);
+    }
 }

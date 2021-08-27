@@ -59,7 +59,7 @@ public class Interfaz extends JFrame{
                                 try{
                                     p.updateListeToPeers(bufferedReader, username, serverThread, port_listen);
                                     Chat vent2 = new Chat();
-                                    vent2.Chat(serverThread, username);
+                                    vent2.Chat(serverThread, username, bufferedReader);
                                     setVisible(false);
 
                                 }catch (Exception i){

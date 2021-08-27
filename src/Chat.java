@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 
 public class Chat extends JFrame{
     private JPanel Jpanel;
@@ -12,9 +13,9 @@ public class Chat extends JFrame{
     private JTextField Impuesto_field;
     private JButton Calc_btn;
     public JLabel Monto_field;
-    public JLabel Client_request;
 
-    public void Chat(Hilo_server serverThread, String username){
+
+    public void Chat(Hilo_server serverThread, String username, BufferedReader bufferedReader){
         Hilo_server s_thread = serverThread;
         setContentPane(Jpanel);
         setTitle(username);
@@ -25,24 +26,17 @@ public class Chat extends JFrame{
 
         Titulo.setText(username);
 
-        Cliente p = new Cliente();
-
         Calc_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String Valor = Valor_field.getText();
                 String Peso = Peso_field.getText();
                 String impuestos = Impuesto_field.getText();
-                Paquete pack = new Paquete();
-                /*pack.setValor(Valor);
-                pack.setPeso(Peso);
-                pack.setImpuesto(impuestos);*/
 
                 if (Valor != null && Peso != null && impuestos!=null){
                     String Monto = s_thread.Calculo(Valor, Peso, impuestos);
-                    s_thread.sendMessage(Monto);
+                    s_thread.sendMessage(username + Monto);
                     Monto_field.setText(Monto);
-
 
                 }
 
@@ -50,32 +44,4 @@ public class Chat extends JFrame{
         });
     }
 
-}
-
-class Paquete{
-    private String Valor, peso, impuesto;
-
-    public String getImpuesto() {
-        return impuesto;
-    }
-
-    public void setImpuesto(String impuesto) {
-        this.impuesto = impuesto;
-    }
-
-    public String getPeso() {
-        return peso;
-    }
-
-    public void setPeso(String peso) {
-        this.peso = peso;
-    }
-
-    public String getValor() {
-        return Valor;
-    }
-
-    public void setValor(String valor) {
-        Valor = valor;
-    }
 }

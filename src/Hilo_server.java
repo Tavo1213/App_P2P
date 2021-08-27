@@ -28,6 +28,7 @@ public class Hilo_server extends Thread{
     void sendMessage(String mensaje){
         try {
             hilo_server2s.forEach(t-> t.getPrintWriter().println(mensaje));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
