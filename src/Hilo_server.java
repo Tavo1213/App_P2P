@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,7 @@ public class Hilo_server extends Thread{
 
     public Hilo_server(String portNumb) throws IOException{
         ss = new ServerSocket(Integer.valueOf(portNumb));
+
     }
 
     public void run(){
@@ -29,6 +31,10 @@ public class Hilo_server extends Thread{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    void sendObject(Object paquete){
+
+        //hilo_server2s.forEach(t-> );
     }
     public Set<Hilo_server2> getServerThreadThreads(){
         return hilo_server2s;
