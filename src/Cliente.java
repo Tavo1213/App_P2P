@@ -29,7 +29,7 @@ public class Cliente {
                     flag = false;
                     break;
                 } else{
-                    serverThread.sendMessage(username+ ":" + msg);
+                    //serverThread.sendMessage(username+ ":" + msg);
                     String mensaje = username + ":" + msg;
 
             }

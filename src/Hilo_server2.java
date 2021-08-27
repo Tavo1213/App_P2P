@@ -27,6 +27,5 @@ public class Hilo_server2 extends Thread{
         }
     }
 
-
 }
 

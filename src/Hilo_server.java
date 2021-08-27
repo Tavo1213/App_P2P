@@ -25,9 +25,10 @@ public class Hilo_server extends Thread{
         }
     }
 
-    void sendMessage(String message){
+    void sendMessage(String valor, String peso, String impuesto){
+        Double Monto = (Integer.valueOf(valor)*Integer.valueOf(impuesto)/100)+(Integer.valueOf(peso)* 0.15);
         try {
-            hilo_server2s.forEach(t-> t.getPrintWriter().println(message));
+            hilo_server2s.forEach(t-> t.getPrintWriter().println(Monto));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,7 +11,7 @@ public class Chat extends JFrame{
     private JTextField Peso_field;
     private JTextField Impuesto_field;
     private JButton Calc_btn;
-    private JLabel Monto_field;
+    public JLabel Monto_field;
 
     public void Chat(Hilo_server serverThread, String username){
         Hilo_server s_thread = serverThread;
@@ -29,8 +29,14 @@ public class Chat extends JFrame{
         Calc_btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String Valor = Valor_field.getText();
+                String Peso = Peso_field.getText();
+                String impuestos = Impuesto_field.getText();
 
-                serverThread.sendMessage("a");
+                if (Valor != null && Peso != null && impuestos!=null){
+                    serverThread.sendMessage(Valor, Peso, impuestos);
+                }
+
             }
         });
     }
