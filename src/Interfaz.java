@@ -60,7 +60,6 @@ public class Interfaz extends JFrame{
                                     p.updateListeToPeers(bufferedReader, username, serverThread, port_listen);
                                     Chat vent2 = new Chat();
                                     vent2.Chat(serverThread, username);
-                                    serverThread.sendMessage("hello");
                                     setVisible(false);
 
                                 }catch (Exception i){

@@ -25,17 +25,24 @@ public class Hilo_server extends Thread{
         }
     }
 
-    void sendMessage(String valor, String peso, String impuesto){
-        Double Monto = (Integer.valueOf(valor)*Integer.valueOf(impuesto)/100)+(Integer.valueOf(peso)* 0.15);
+    void sendMessage(String mensaje){
         try {
-            hilo_server2s.forEach(t-> t.getPrintWriter().println(Monto));
+            hilo_server2s.forEach(t-> t.getPrintWriter().println(mensaje));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    void sendObject(Object paquete){
 
-        //hilo_server2s.forEach(t-> );
+    public String Calculo(String Valor, String Peso, String Impuesto){
+        double Monto = 0;
+
+        double valor = Double.valueOf(Valor);
+        double peso = Double.valueOf(Peso);
+        double impuesto = Double.valueOf(Impuesto);
+
+        Monto = (valor*impuesto/100)+(peso*0.25);
+
+        return String.valueOf(Monto);
     }
     public Set<Hilo_server2> getServerThreadThreads(){
         return hilo_server2s;

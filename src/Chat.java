@@ -12,12 +12,13 @@ public class Chat extends JFrame{
     private JTextField Impuesto_field;
     private JButton Calc_btn;
     public JLabel Monto_field;
+    public JLabel Client_request;
 
     public void Chat(Hilo_server serverThread, String username){
         Hilo_server s_thread = serverThread;
         setContentPane(Jpanel);
         setTitle(username);
-        setSize(500, 500);
+        setSize(400, 400);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -32,9 +33,17 @@ public class Chat extends JFrame{
                 String Valor = Valor_field.getText();
                 String Peso = Peso_field.getText();
                 String impuestos = Impuesto_field.getText();
+                Paquete pack = new Paquete();
+                /*pack.setValor(Valor);
+                pack.setPeso(Peso);
+                pack.setImpuesto(impuestos);*/
 
                 if (Valor != null && Peso != null && impuestos!=null){
-                    serverThread.sendMessage(Valor, Peso, impuestos);
+                    String Monto = s_thread.Calculo(Valor, Peso, impuestos);
+                    s_thread.sendMessage(Monto);
+                    Monto_field.setText(Monto);
+
+
                 }
 
             }
