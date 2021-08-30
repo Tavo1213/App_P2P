@@ -25,6 +25,8 @@ public class Chat extends JFrame{
     public JLabel Monto_field;
     private JTextArea Chat;
     private JScrollPane Scroll;
+    private JTextField Envio_msg;
+    private JButton Enviar_btn;
 
     /**
      * Crea una ventana_cliente para solicitar calculos de monto en base a los parametro ingresados
@@ -45,6 +47,23 @@ public class Chat extends JFrame{
         Chat.setLineWrap(true);
 
         Titulo.setText("Cliente: "+username);//titulo de la ventana
+
+        /**
+         * Detecta cuando se pulsa el boton Enviar en la ventana
+         */
+        Enviar_btn.addActionListener(new ActionListener() {
+            /**
+             * Detecta cuando se pulsa el boton Enviar en la ventana y envia el mensaje al terminal del otro cliente
+             * @param e evento de pulsacion del boton
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String msg = Envio_msg.getText();
+                serverThread.sendMessage(username + ": " + msg);
+                s_thread.updateTexArea(Chat, "-Mensaje enviado con exito al terminal del cliente \n");
+
+            }
+        });
 
         //detector de presionar el boton calcular en la ventana
         Calc_btn.addActionListener(new ActionListener() {
@@ -67,9 +86,9 @@ public class Chat extends JFrame{
                 }else{
                     s_thread.updateTexArea(Chat,"-Error, ingrese numeros enteros \n");
                 }
-
             }
         });
+
     }
 
     /**

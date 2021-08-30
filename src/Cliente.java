@@ -17,16 +17,18 @@ public class Cliente extends Thread{
 
     /**
      * Crea la conexion entre clientes.
+     * @param username nombre de usuario del cliente
      * @param port numero de puerto al cual se quiere escuchar
      * @throws IOException
      */
-    public void conexion_clientes(String port) throws IOException{
+    public void conexion_clientes(String username ,String port) throws IOException{
         System.out.println("Client connecting");
         Socket sc = null; //crea el socket a escuchar
             try{
                 sc = new Socket("localhost", Integer.valueOf(port)); //crea la conexion entre clientes.
                 new Hilo_cliente(sc).start(); //Inicia el hilo de cliente.
-                System.out.println("Client conencted");
+                System.out.println("Client connected");
+                System.out.println("Cliente: " + username);
 
             } catch (Exception e){
                 if (sc != null) sc.close();

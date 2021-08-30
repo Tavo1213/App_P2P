@@ -85,7 +85,7 @@ public class Interfaz extends JFrame{
 
                                 if (bufferedReader != null && username!= null && serverThread!= null && port_listen != null){ //validacion de variables no nulas.
                                     try{
-                                        cli.conexion_clientes(port_listen); //crea la conexion entre clientes.
+                                        cli.conexion_clientes(username, port_listen); //crea la conexion entre clientes.
                                         Chat vent2 = new Chat(); //instancia de la segunda interfaz
                                         vent2.Chat(serverThread, username); //se crea la interfaz y se trasladan parametros hacia la otra clase.
                                         setVisible(false);
